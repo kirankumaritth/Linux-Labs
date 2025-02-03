@@ -1,19 +1,5 @@
 # Linux-Labs
 
-## Detailed step-by-step guide, for virtualization and Linux operating system installations:
-
-1. Virtual Machine (VM) Setup-Individual User (1st Priority)
-   •	Use virtualization software to run Linux within another OS.
-   •	Popular VM tools:
-o	VirtualBox (Free)
-o	VMware Workstation/Player
-o	Hyper-V (Windows built-in)
-Virtual Machine (VM) Setup-Individual User
-Here’s a step-by-step guide for setting up a virtual machine (VM) on your laptop using VirtualBox (free option) and running Ubuntu on it for performing labs. 
-The instructions cover the installation of VirtualBox, creation of a VM, and the installation of Ubuntu OS on it.
-Follow this Official Guide from Ubuntu Tutorials [Click Here](https://ubuntu.com/tutorials/how-to-run-ubuntu-desktop-on-a-virtual-machine-using-virtualbox#1-overview)
-
-
 ---
 ## Most Important and Frequently used Linux Commands:
 
