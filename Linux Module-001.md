@@ -303,40 +303,6 @@ Here's an explanation of each of the basic commands you've listed:
     sudo apt-get update
     ```
 
-37. **adduser/useradd:**
-    - Adds a new user to the system.
-
-    ```bash
-    adduser demouser
-    ```
-
-    or
-
-    ```bash
-    useradd username
-    ```
-
-38. **passwd:**
-    - Changes the user password.
-
-    ```bash
-    passwd username
-    ```
-
-39. **su (Switch User):**
-    - Switches to another user account.
-
-    ```bash
-    su - username
-    ```
-
-40. **groups:**
-    - Displays the groups a user belongs to.
-
-    ```bash
-    groups username
-    ```
-
 41. **shutdown/reboot:**
     - Shuts down or reboots the system.
 
