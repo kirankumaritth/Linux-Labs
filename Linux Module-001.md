@@ -95,7 +95,7 @@ Here's an explanation of each of the basic commands you've listed:
    cd Demo_Directory
    ```
    
-15. **`cd ~` (Home Directory):**
+14. **`cd ~` (Home Directory):**
    - Changes the current working directory to the user's home directory.
 
    ```bash
@@ -108,7 +108,7 @@ Here's an explanation of each of the basic commands you've listed:
    cd
    ```
 
-14. **`rmdir` (Remove Directory):**
+15. **`rmdir` (Remove Directory):**
    - Removes an empty directory.
 
    ```bash
