@@ -2,14 +2,47 @@
 
 Commonly used Linux commands related to user management:
 
-1. **Listing Users:**
+1. **adduser/useradd:**
+    - Adds a new user to the system.
+
+    ```bash
+    adduser demouser
+    ```
+
+    or
+
+    ```bash
+    useradd username
+    ```
+
+2. **passwd:**
+    - Changes the user password.
+
+    ```bash
+    passwd username
+    ```
+
+3. **su (Switch User):**
+    - Switches to another user account.
+
+    ```bash
+    su - username
+    ```
+
+4. **groups:**
+    - Displays the groups a user belongs to.
+
+    ```bash
+    groups username
+    ```
+5. **Listing Users:**
    ```bash
    cat /etc/passwd
    ```
 
    This command will display a list of all users.
 
-2. **Creating a User:**
+6. **Creating a User:**
    ```bash
    sudo adduser sagar
    ```
@@ -18,37 +51,37 @@ Commonly used Linux commands related to user management:
    sudo adduser myuser
    ```
 
-3. **User Information:**
+7. **User Information:**
    ```bash
    id sagar
    ```
 
-4. **Displaying Currently Logged in Users:**
+8. **Displaying Currently Logged in Users:**
    ```bash
    who
    ```
 
-5. **Changing Password:**
+9. **Changing Password:**
    ```bash
    sudo passwd sagar
    ```
 
-6. **Granting Sudo Privileges:**
+10. **Granting Sudo Privileges:**
    ```bash
    sudo usermod -aG sudo sagar
    ```
 
-7. **Switching to Another User:**
+11. **Switching to Another User:**
     ```bash
     su - sagar
     ```
 
-8. **Viewing Last Login Information:**
+12. **Viewing Last Login Information:**
     ```bash
     last sagar
     ```
 
-9. **Deleting a User:**
+13. **Deleting a User:**
    ```bash
    sudo deluser sagar
    ```
