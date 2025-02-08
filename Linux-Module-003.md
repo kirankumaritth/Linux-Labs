@@ -76,14 +76,14 @@ A shell acts as an interface between the user and the operating system. Common s
 ---
 
 ## **5. Variables and Data Handling**  
-### **Steps to Declare and Use Variables**  
+### a) **Steps to Declare and Use Variables**  
 1. **Create a script file:**
    ```bash
-   touch variables.sh
+   touch variables1.sh
    ```
 2. **Edit the script:**
    ```bash
-   vi variables.sh
+   vi variables1.sh
    ```
 3. **Write the script:**
    ```bash
@@ -93,16 +93,26 @@ A shell acts as an interface between the user and the operating system. Common s
    ```
 4. **Make the script executable and run it:**
    ```bash
-   chmod +x variables.sh
-   ./variables.sh
+   chmod +x variables1.sh
+   ```
+   ```
+   ./variables1.sh
    ```
 5. **Expected output:**
    ```bash
    Welcome to DevOps
    ```
 
-### **Steps for Arithmetic Operations**  
-1. **Modify the script to include arithmetic operations:**
+### b) **Steps for Arithmetic Operations**  
+1. **Create a script file:**
+   ```bash
+   touch variables2.sh
+   ```
+2. **Edit the script:**
+   ```bash
+   vi variables2.sh
+   ```
+3. **Write the script:**
    ```bash
    #!/bin/bash
    NUM1=10
@@ -110,9 +120,12 @@ A shell acts as an interface between the user and the operating system. Common s
    SUM=$((NUM1 + NUM2))
    echo "Sum: $SUM"
    ```
-2. **Run the script:**
+4. **Make the script executable and run it:**
    ```bash
-   ./variables.sh
+   chmod +x variables2.sh
+   ```
+   ```
+   ./variables2.sh
    ```
 3. **Expected output:**
    ```bash
@@ -126,6 +139,9 @@ A shell acts as an interface between the user and the operating system. Common s
 1. **Create a script file:**
    ```bash
    touch conditionals.sh
+   ```
+   ```bash
+   vi conditionals.sh
    ```
 2. **Write the script:**
    ```bash
@@ -142,6 +158,8 @@ A shell acts as an interface between the user and the operating system. Common s
 3. **Make it executable and run it:**
    ```bash
    chmod +x conditionals.sh
+   ```
+   ```
    ./conditionals.sh
    ```
 4. **Expected output:**
@@ -157,6 +175,9 @@ A shell acts as an interface between the user and the operating system. Common s
    ```bash
    touch loops.sh
    ```
+   ```
+   vi loops.sh
+   ```
 2. **Write the script:**
    ```bash
    #!/bin/bash
@@ -167,6 +188,8 @@ A shell acts as an interface between the user and the operating system. Common s
 3. **Make it executable and run it:**
    ```bash
    chmod +x loops.sh
+   ```
+   ```
    ./loops.sh
    ```
 4. **Expected output:**
@@ -186,6 +209,9 @@ A shell acts as an interface between the user and the operating system. Common s
    ```bash
    touch functions.sh
    ```
+   ```
+   vi functions.sh
+   ```
 2. **Write the script:**
    ```bash
    #!/bin/bash
@@ -197,6 +223,8 @@ A shell acts as an interface between the user and the operating system. Common s
 3. **Make it executable and run it:**
    ```bash
    chmod +x functions.sh
+   ```
+   ```
    ./functions.sh
    ```
 4. **Expected output:**
@@ -204,6 +232,177 @@ A shell acts as an interface between the user and the operating system. Common s
    Hello, DevOps
    ```
 
+---
+
+## **9. Shell script to `install Docker` on an **Ubuntu 24.04 LTS** machine.**  
+
+### **It follows the official installation steps, ensuring that Docker is installed correctly with the latest stable version.**
+
+#### Features of this script:
+✅ Removes old Docker versions  
+✅ Installs required dependencies  
+✅ Adds the official Docker repository  
+✅ Installs Docker Engine, CLI, and containerd  
+✅ Enables and starts the Docker service  
+✅ Adds the current user to the Docker group (optional)  
+
+---
+### **Steps for Execution**
+1. **Create a script file:**
+   ```bash
+   touch install_docker.sh
+   ```
+   ```
+   vi install_docker.sh
+   ```
+---
+
+### **Shell Script: `install_docker.sh`**
+```
+#!/bin/bash
+
+for pkg in docker.io docker-doc docker-compose docker-compose-v2 podman-docker containerd runc; do sudo apt-get remove $pkg; done
+
+# Add Docker's official GPG key:
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+
+# Add the repository to Apt sources:
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt-get update
+
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+```
+---
+
+2. Make the script executable:  
+   ```bash
+   chmod +x install_docker.sh
+   ```
+3. Run the script with:  
+   ```bash
+   ./install_docker.sh -y
+   ```
+---
+### **Post-Installation Verification**
+- Check if Docker is installed:
+  ```bash
+  docker --version
+  ```
+
+- Create a docker group to add current user
+  ```bash
+  sudo groupadd docker
+  ```
+
+- Add the Current user to the docker group to get permissions
+  ```bash
+  sudo usermod -aG docker $USER
+  ```
+- List docker Images
+  ```bash
+  docker images
+  ```
+- Run a test container:
+  ```bash
+  docker run hello-world
+  ```
+- List docker Images
+  ```bash
+  docker images
+  ```
+---
+### Now try to run a web server.  
+
+#### **Example: Running an Nginx Web Server with Alpine**
+```bash
+docker run -d --name c1 -p 8080:80 nginx:alpine
+```
+Then, open your browser and visit **`http://localhost:8080`** to see the Nginx default page.
+
+---
+### Stop and Remove the Container
+
+List all the Active & Inactive Containers
+```bash
+docker ps -a
+```
+Stop the running Container
+```bash
+docker stop <Container ID>
+```
+Remove the Running Container
+
+```bash
+docker rm <Container ID>
+```
+---
+
+## **9. Shell script to `Uninstall Docker` on an **Ubuntu 24.04 LTS** machine.**  
+
+### **Shell Script: `remove_docker.sh`**
+
+---
+
+### **What This Script Does**
+✅ Stops and removes all running/stopped containers  
+✅ Uninstalls Docker packages  
+✅ Deletes Docker directories (`/var/lib/docker`, `/etc/docker`, `/var/run/docker.sock`)  
+✅ Removes the Docker group (if it exists)  
+✅ Cleans up unused dependencies  
+
+---
+
+### **How to Use**
+1. Create & Save the script as `remove_docker.sh`.  
+   ```bash
+   touch remove_docker.sh
+   ```
+   ```
+   vi remove_docker.sh
+   ```
+---
+
+   ```bash
+   #!/bin/bash
+   
+   set -e  # Exit on error
+   
+   #!/bin/bash
+
+   sudo apt-get purge docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+
+   sudo rm -rf /var/lib/docker
+   sudo rm -rf /var/lib/containerd
+
+   sudo rm /etc/apt/sources.list.d/docker.list
+   sudo rm /etc/apt/keyrings/docker.asc
+   ```
+
+---
+
+2. Make it executable:
+   ```bash
+   chmod +x remove_docker.sh
+   ```
+3. Run the script:
+   ```bash
+   ./remove_docker.sh
+   ```
+---
+
+### **Post-UnInstallation Verification**
+- Check if Docker is completely Uninstalled:
+  ```bash
+  docker --version
+  ```
 ---
 
 ## **Conclusion**  
