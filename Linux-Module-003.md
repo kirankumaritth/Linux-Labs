@@ -1,6 +1,6 @@
 ---
 
-# **Linux Lab 3: DevOps and Cloud Shell Scripting**
+# **Linux Lab 3: Shell Scripting for DevOps**
 
 ---
 ## **1. Introduction to Shell Scripting**  
@@ -26,9 +26,7 @@ A shell acts as an interface between the user and the operating system. Common s
 
 ---
 
-## Step-3 is Optional (This can also be performed on the local machine)
-
-## **3. Setting Up Shell Scripting on AWS**  
+## **3. Setting Up Shell Scripting on AWS (Optional, Can Be Done Locally)**  
 ### **Creating a Linux Machine on AWS**  
 1. Log in to AWS and launch an **EC2 instance**.
 2. Select **Amazon Linux 2 AMI**.
@@ -61,197 +59,150 @@ A shell acts as an interface between the user and the operating system. Common s
    #!/bin/bash
    echo "Hello, World!"
    ```
-4. **Make the script executable:**
+4. **Save and exit the editor:** Press `Esc`, then type `:wq` and press `Enter`.
+5. **Change file permissions to make it executable:**
    ```bash
    chmod +x first_script.sh
    ```
-5. **Run the script:**
+6. **Run the script:**
    ```bash
    ./first_script.sh
+   ```
+7. **Expected output:**
+   ```bash
+   Hello, World!
    ```
 
 ---
 
 ## **5. Variables and Data Handling**  
-### **Declaring Variables**  
-```bash
-NAME="DevOps"
-echo "Welcome to $NAME"
-```
+### **Steps to Declare and Use Variables**  
+1. **Create a script file:**
+   ```bash
+   touch variables.sh
+   ```
+2. **Edit the script:**
+   ```bash
+   vi variables.sh
+   ```
+3. **Write the script:**
+   ```bash
+   #!/bin/bash
+   NAME="DevOps"
+   echo "Welcome to $NAME"
+   ```
+4. **Make the script executable and run it:**
+   ```bash
+   chmod +x variables.sh
+   ./variables.sh
+   ```
+5. **Expected output:**
+   ```bash
+   Welcome to DevOps
+   ```
 
-### **Arithmetic Operations**  
-```bash
-NUM1=10
-NUM2=20
-SUM=$((NUM1 + NUM2))
-echo "Sum: $SUM"
-```
+### **Steps for Arithmetic Operations**  
+1. **Modify the script to include arithmetic operations:**
+   ```bash
+   #!/bin/bash
+   NUM1=10
+   NUM2=20
+   SUM=$((NUM1 + NUM2))
+   echo "Sum: $SUM"
+   ```
+2. **Run the script:**
+   ```bash
+   ./variables.sh
+   ```
+3. **Expected output:**
+   ```bash
+   Sum: 30
+   ```
 
 ---
 
 ## **6. Control Statements in Shell Scripting**  
-### **Conditional Statements (`if`, `if-else`, `if-elif-else`)**  
-```bash
-#!/bin/bash
-NUM=10
-
-if [ $NUM -gt 5 ]; then
-    echo "Number is greater than 5"
-elif [ $NUM -eq 5 ]; then
-    echo "Number is equal to 5"
-else
-    echo "Number is less than 5"
-fi
-```
-
-### **Case Statement**  
-```bash
-#!/bin/bash
-DAY="Monday"
-
-case $DAY in
-    "Monday") echo "Start of the work week" ;;
-    "Friday") echo "End of the work week" ;;
-    "Saturday" | "Sunday") echo "Weekend!" ;;
-    *) echo "Midweek day" ;;
-esac
-```
+### **Steps to Use Conditional Statements**  
+1. **Create a script file:**
+   ```bash
+   touch conditionals.sh
+   ```
+2. **Write the script:**
+   ```bash
+   #!/bin/bash
+   NUM=10
+   if [ $NUM -gt 5 ]; then
+       echo "Number is greater than 5"
+   elif [ $NUM -eq 5 ]; then
+       echo "Number is equal to 5"
+   else
+       echo "Number is less than 5"
+   fi
+   ```
+3. **Make it executable and run it:**
+   ```bash
+   chmod +x conditionals.sh
+   ./conditionals.sh
+   ```
+4. **Expected output:**
+   ```bash
+   Number is greater than 5
+   ```
 
 ---
 
 ## **7. Loops in Shell Scripting**  
-### **For Loop**  
-```bash
-for i in 1 2 3 4 5; do
-    echo "Number: $i"
-done
-```
-
-### **While Loop**  
-```bash
-COUNTER=1
-while [ $COUNTER -le 5 ]; do
-    echo "Counter: $COUNTER"
-    COUNTER=$((COUNTER + 1))
-done
-```
-
-### **Until Loop**  
-```bash
-COUNTER=1
-until [ $COUNTER -gt 5 ]; do
-    echo "Counter: $COUNTER"
-    COUNTER=$((COUNTER + 1))
-done
-```
+### **Steps to Use a `for` Loop**  
+1. **Create a script file:**
+   ```bash
+   touch loops.sh
+   ```
+2. **Write the script:**
+   ```bash
+   #!/bin/bash
+   for i in {1..5}; do
+       echo "Number: $i"
+   done
+   ```
+3. **Make it executable and run it:**
+   ```bash
+   chmod +x loops.sh
+   ./loops.sh
+   ```
+4. **Expected output:**
+   ```bash
+   Number: 1
+   Number: 2
+   Number: 3
+   Number: 4
+   Number: 5
+   ```
 
 ---
 
 ## **8. Functions in Shell Scripting**  
-### **Defining and Calling a Function**  
-```bash
-#!/bin/bash
-greet() {
-    echo "Hello, $1"
-}
-greet "DevOps"
-```
-
-### **Returning a Value from a Function**  
-```bash
-add() {
-    SUM=$(( $1 + $2 ))
-    echo $SUM
-}
-
-RESULT=$(add 3 4)
-echo "Sum: $RESULT"
-```
-
----
-
-## **9. Command Line Arguments**  
-### **Handling Input Arguments**  
-```bash
-#!/bin/bash
-echo "Script Name: $0"
-echo "First Argument: $1"
-echo "Second Argument: $2"
-echo "All Arguments: $@"
-echo "Number of Arguments: $#"
-```
-**Usage:**  
-```bash
-./script.sh arg1 arg2 arg3
-```
-
----
-
-## **10. Common Shell Scripting Commands for DevOps**  
-### **File and Directory Commands**  
-```bash
-touch filename  # Create a new file
-ls              # List files
-cd /path        # Change directory
-mkdir dir       # Create directory
-rm filename     # Remove file
-```
-
-### **Text Processing Commands**  
-```bash
-grep "pattern" filename  # Search for a pattern
-sed 's/old/new/g' file   # Replace text
-sort filename            # Sort lines
-wc filename              # Count words, lines, and characters
-```
-
-### **System Monitoring**  
-```bash
-df -h      # Check disk space
-free -h    # Check memory usage
-uptime     # Display system uptime
-ps aux     # List running processes
-top        # Monitor real-time system activity
-```
-
-### **Networking Commands**  
-```bash
-ping google.com       # Check network connectivity
-ifconfig             # Display network interfaces
-scp file user@host:/path  # Secure copy files over SSH
-```
-
----
-
-## **11. Example Scripts for DevOps Tasks**  
-### **Finding the Greater of Two Numbers**  
-```bash
-#!/bin/bash
-if [ $# -ne 2 ]; then
-    echo "Usage: $0 num1 num2"
-    exit 1
-fi
-
-if [ $1 -gt $2 ]; then
-    echo "$1 is greater than $2"
-elif [ $1 -lt $2 ]; then
-    echo "$2 is greater than $1"
-else
-    echo "Both numbers are equal"
-fi
-```
-
-### **Simple Calculator (Addition)**  
-```bash
-#!/bin/bash
-if [ $# -ne 2 ]; then
-    echo "Usage: $0 num1 num2"
-    exit 1
-fi
-
-SUM=$(( $1 + $2 ))
-echo "The sum of $1 and $2 is $SUM"
-```
+### **Steps to Create and Use Functions**  
+1. **Create a script file:**
+   ```bash
+   touch functions.sh
+   ```
+2. **Write the script:**
+   ```bash
+   #!/bin/bash
+   greet() {
+       echo "Hello, $1"
+   }
+   greet "DevOps"
+   ```
+3. **Make it executable and run it:**
+   ```bash
+   chmod +x functions.sh
+   ./functions.sh
+   ```
+4. **Expected output:**
+   ```bash
+   Hello, DevOps
+   ```
 
 ---
 
