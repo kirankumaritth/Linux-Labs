@@ -1,6 +1,6 @@
 ---
 
-# **Linux Lab - Essential Commands with Explanation**
+# **Linux Lab 1:  Essential Commands with Explanation**
 
 ---
 
