@@ -37,7 +37,7 @@
    su - sagar
    ```
 
-7. **Granting Sudo Privileges to a User**  
+7. **Granting sudo privileges to a user (If not allowed, a user with sudo privileges must grant access).**  
    ```bash
    sudo usermod -aG sudo sagar
    ```
