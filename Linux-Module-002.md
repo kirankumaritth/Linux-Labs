@@ -35,6 +35,9 @@ To check user ID (UID), group ID (GID), and group memberships:
 ```bash
 id sagar
 ```
+```bash
+id adam
+```
 
 ### **1.5 Displaying Currently Logged-in Users**  
 The `who` command lists currently logged-in users:
@@ -49,7 +52,7 @@ su - sagar
 ```
 
 ### **1.7 Granting sudo Privileges to a User**  
-If a user is not allowed to execute sudo commands, an administrator must grant access:
+**Note:** If a user is not allowed to execute sudo commands, an `administrator` must add `sagar` to `sudoer's` group:
 ```bash
 sudo usermod -aG sudo sagar
 ```
@@ -122,6 +125,9 @@ sudo groupdel newgroup
 If you get an error stating **"cannot remove the primary group of user 'sagar'"**, change the user's primary group first:
 ```bash
 sudo usermod -g sagar sagar
+```
+```
+groups sagar
 ```
 ```
 sudo groupdel newgroup
@@ -248,5 +254,55 @@ sudo deluser sagar
 ```
 cat /etc/passwd
 ```
+Here's the cleanup section to ensure that any created files, directories, users, and groups are removed after completing the lab.  
+
+---
+
+## **6. Cleanup**  
+
+After completing the lab, follow these steps to remove the created files, directories, users, and groups to restore the system to its original state.  
+
+### **6.1 Remove Created Users**  
+```bash
+sudo deluser sagar
+```
+```
+cat /etc/passwd
+```
+
+### **6.2 Remove Created Groups**  
+```bash
+sudo groupdel mygroup
+```
+```
+sudo groupdel newgroup
+```
+
+### **6.3 Remove Created Files and Directories**  
+```bash
+rm -rf ~/DemoDirectory
+```
+```
+rm -f ~/TestFile.txt
+```
+
+### **6.4 Verify Deletions**  
+```bash
+cat /etc/passwd | grep sagar
+```
+```
+cat /etc/passwd | grep adam
+```
+```
+getent group mygroup
+```
+```
+getent group newgroup
+```
+```
+ls -l ~
+```
+
+This ensures that all test users, groups, files, and directories are removed, keeping the system clean for future labs.
 
 ---
