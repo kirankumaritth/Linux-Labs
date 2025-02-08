@@ -16,6 +16,9 @@
    ```bash
    sudo adduser sagar
    ```
+   ```bash
+   sudo adduser adam
+   ```
 
 3. **Setting/Changing a User Password**  
    ```bash
@@ -49,7 +52,7 @@
 
 9. **Deleting a User**  
    ```bash
-   sudo deluser sagar
+   sudo deluser adam
    ```
 
 ---
@@ -82,7 +85,7 @@
    sudo usermod -g mygroup sagar
    ```
 
-6. **Removing a User from a Group**  
+6. **Removing a user from a group (Note: A user cannot be removed from their primary group; they must be in at least one group).**
    ```bash
    sudo gpasswd -d sagar mygroup
    ```
@@ -92,10 +95,40 @@
    sudo groupmod -n newgroup mygroup
    ```
 
-8. **Deleting a Group**  
+8. **Deleting a Group.**  
    ```bash
    sudo groupdel newgroup
    ```
+The error message **"groupdel: cannot remove the primary group of user 'sagar'"** means that `newgroup` is the **primary group** of the user `sagar`. You cannot delete a group if it is assigned as the primary group of any user.  
+
+### **Solution: Change the Primary Group of `sagar` Before Deleting**  
+You need to change `sagar`'s primary group to another existing group before deleting `newgroup`. Follow these steps:
+
+#### **Step 1: Check `sagar`'s Current Groups**
+Run:
+```bash
+id sagar
+```
+This will show the user’s **UID, primary group (GID), and other group memberships**.
+
+#### **Step 2: Change the Primary Group**
+Assign a different existing group (e.g., `sagar` or `sudo`) as `sagar`'s primary group:
+```bash
+sudo usermod -g sagar sagar
+```
+
+#### **Step 3: Delete `newgroup`**
+Now, you should be able to delete `newgroup` without errors:
+```bash
+sudo groupdel newgroup
+```
+
+#### **Step 4: Verify**
+Check if `newgroup` is removed:
+```bash
+getent group newgroup
+```
+If it returns nothing, the group has been successfully deleted.
 
 ---
 
