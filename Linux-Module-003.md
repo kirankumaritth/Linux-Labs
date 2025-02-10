@@ -19,7 +19,7 @@ Shell scripting involves writing a series of Linux commands in a script file to 
 
 ---
 
-## **2. Getting Started with Shell Scripting**  
+### **Getting Started with Shell Scripting**  
 
 ### **Setting Up a Linux Machine on AWS (Optional, Can Be Done Locally)**  
 
@@ -38,6 +38,35 @@ Shell scripting involves writing a series of Linux commands in a script file to 
 2. Start a new **SSH session**.  
 3. Enter public IP and authentication details.  
 4. Connect and execute Linux commands.  
+
+---
+
+## **2. Lab: Introduction to Shell Scripting**  
+
+### **1. Understanding Shell Scripting**  
+Shell scripting is a way to automate tasks in a Unix/Linux system by writing commands in a script file that can be executed as a program.
+
+### **2. Checking and Changing the Shell**  
+
+1. **Check the current shell:**  
+   
+   ```bash
+   echo $SHELL
+   ```
+
+2. **List available shells:**  
+   
+   ```bash
+   cat /etc/shells
+   ```
+
+3. **Change the shell (Example: Changing to Bash shell):**  
+   
+   ```bash
+   chsh -s /bin/bash
+   ```
+   
+   - You may need to log out and log back in for the change to take effect.
 
 ---
 
@@ -81,7 +110,7 @@ Shell scripting involves writing a series of Linux commands in a script file to 
 
 ## **4. Variables and Data Handling**  
 
-### **Declaring and Using Variables**  
+### **4.1 Declaring and Using Variables**  
 
 1. **Create a script file:**  
 
@@ -118,7 +147,7 @@ Shell scripting involves writing a series of Linux commands in a script file to 
 
 ---
 
-### **Performing Arithmetic Operations**  
+### **4.2 Performing Arithmetic Operations**  
 
 1. **Create a script file:**  
 
@@ -159,7 +188,7 @@ Shell scripting involves writing a series of Linux commands in a script file to 
 
 ## **5. Control Statements and Loops**  
 
-### **Using Conditional Statements**  
+### **5.1 Using Conditional Statements**  
 
 1. **Create a script file:**  
 
@@ -202,7 +231,7 @@ Shell scripting involves writing a series of Linux commands in a script file to 
 
 ---
 
-### **Using a `for` Loop**  
+### **5.2 Using a `for` Loop**  
 
 1. **Create a script file:**  
 
@@ -286,7 +315,7 @@ Shell scripting involves writing a series of Linux commands in a script file to 
 ---
 
 
-## **9. Shell script to `install Docker` on an **Ubuntu 24.04 LTS** machine.**  
+## **7. Shell script to `install Docker` on an **Ubuntu 24.04 LTS** machine.**  
 
 ### **It follows the official installation steps, ensuring that Docker is installed correctly with the latest stable version.**
 
@@ -397,7 +426,7 @@ docker rm <Container ID>
 ```
 ---
 
-## **9. Shell script to `Uninstall Docker` on an **Ubuntu 24.04 LTS** machine.**  
+## **8. Shell script to `Uninstall Docker` on an **Ubuntu 24.04 LTS** machine.**  
 
 ### **Shell Script: `remove_docker.sh`**
 
@@ -456,7 +485,7 @@ docker rm <Container ID>
   docker --version
   ```
 ---
-## **Sample Shell Script for System Backup 💾**
+## **9. Sample Shell Script for System Backup 💾**
 
 ---
 ### **Steps for Execution**
