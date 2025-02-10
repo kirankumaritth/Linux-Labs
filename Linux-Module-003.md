@@ -485,7 +485,185 @@ docker rm <Container ID>
   docker --version
   ```
 ---
-## **9. Sample Shell Script for System Backup 💾**
+
+## **9. Lab: Installing and Uninstalling Terraform on Ubuntu**
+
+---
+
+### **Step 1: Checking System Requirements**
+Before installing Terraform, verify that your system is up-to-date.
+
+1. Open the terminal.
+2. Run the following command to update package lists:
+   ```bash
+   sudo apt update -y && sudo apt upgrade -y
+   ```
+3. Ensure that `wget` and `unzip` are installed:
+   ```bash
+   sudo apt install -y wget unzip
+   ```
+
+---
+
+### **Step 2: Creating the Shell Script**
+
+1. Open the terminal and navigate to your working directory:
+   ```bash
+   cd ~
+   ```
+2. Create a new script file:
+   ```bash
+   touch terraform_installer.sh
+   ```
+3. Open the script file using a text editor (e.g., nano):
+   ```bash
+   vi terraform_installer.sh
+   ```
+4. Copy and paste the following script into the file:
+   ```bash
+   #!/usr/bin/env bash
+
+   install_terraform() {
+       echo "Installing Terraform..."
+       sudo apt update -y
+       sudo apt install -y wget unzip
+       wget -qO- https://releases.hashicorp.com/terraform/$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | grep 'tag_name' | cut -d '"' -f 4 | tr -d 'v')/terraform_$(curl -s https://api.github.com/repos/hashicorp/terraform/releases/latest | grep 'tag_name' | cut -d '"' -f 4 | tr -d 'v')_linux_amd64.zip -O terraform.zip
+       unzip terraform.zip
+       sudo mv terraform /usr/local/bin/
+       rm terraform.zip
+       echo "Terraform installation complete."
+   }
+
+   uninstall_terraform() {
+       echo "Uninstalling Terraform..."
+       sudo rm -f /usr/local/bin/terraform
+       echo "Terraform has been removed."
+   }
+
+   echo "Choose an option:"
+   echo "1. Install Terraform"
+   echo "2. Uninstall Terraform"
+   read -p "Enter choice [1-2]: " choice
+
+   case $choice in
+       1) install_terraform ;;
+       2) uninstall_terraform ;;
+       *) echo "Invalid option. Exiting." ;;
+   esac
+   ```
+5. Save and exit the editor:
+   - Esc + :wq!
+---
+
+### **Step 3: Granting Execution Permissions**
+Before running the script, grant execution permissions:
+```bash
+chmod +x terraform_installer.sh
+```
+
+---
+
+### **Step 4: Running the Script**
+Execute the script by running:
+```bash
+./terraform_installer.sh
+```
+You will be prompted to choose an option:
+```
+Choose an option:
+1. Install Terraform
+2. Uninstall Terraform
+Enter choice [1-2]:
+```
+
+---
+
+### **Step 5: Verifying the Installation**
+After installing Terraform, check if it is installed correctly by running:
+```bash
+terraform -v
+```
+You should see an output displaying the Terraform version:
+```
+Terraform v1.xx.x
+```
+
+---
+
+### **Step 6: Uninstalling Terraform**
+If you need to uninstall Terraform, rerun the script and select option `2`.
+```bash
+./terraform_installer.sh
+```
+
+Verify that Terraform has been removed by running:
+```bash
+terraform -v
+```
+If Terraform is uninstalled successfully, you will see:
+```
+bash: /usr/local/bin/terraform: No such file or directory
+```
+
+---
+
+### **Summary**
+In this lab, you:
+- Created a shell script to install and uninstall Terraform.
+- Made the script executable and ran it.
+- Verified the installation and uninstallation of Terraform.
+
+This approach helps automate Terraform setup, making it easy to manage on multiple machines.
+
+---
+
+### **Next Steps**
+- Try modifying the script to support different Terraform versions.
+- Explore using Terraform to provision infrastructure on AWS, Azure, or Google Cloud.
+
+---
+
+**End of Lab** 🎉
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## **10. Sample Shell Script for System Backup 💾**
 
 ---
 ### **Steps for Execution**
