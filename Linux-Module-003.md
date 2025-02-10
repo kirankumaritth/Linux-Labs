@@ -456,6 +456,47 @@ docker rm <Container ID>
   docker --version
   ```
 ---
+## **Sample Shell Script for System Backup 💾**
+
+---
+### **Steps for Execution**
+1. **Create a script file:**
+   ```bash
+   touch backup.sh
+   ```
+   ```
+   vi backup.sh
+   ```
+---
+```bash
+#!/bin/bash  
+# Backup script to copy important files  
+
+SOURCE="/home/user/documents"  
+DESTINATION="/backup/documents_$(date +%F).tar.gz"  
+
+tar -czf $DESTINATION $SOURCE  
+echo "Backup completed successfully: $DESTINATION"  
+```
+
+### **Executing the Script ▶️**  
+```bash
+chmod +x backup.sh  # Grant execute permission
+```
+```bash
+./backup.sh  # Run the script  
+```
+
+### **Automating with Cron Job 🕒**  
+To run the script daily at **2 AM**, add it to the cron scheduler:  
+```bash
+crontab -e
+```
+```bash
+0 2 * * * /path/to/backup.sh  
+```
+
+---
 
 ## **Conclusion**  
 - Shell scripting is essential for DevOps engineers.
